@@ -33,12 +33,12 @@ setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 # Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
-# Set custom strings for an unstaged vcs repo changes (*) and staged
-# changes (+)
-zstyle ':vcs_info:*' unstagedstr ' *'
-zstyle ':vcs_info:*' stagedstr ' +'
-zstyle ':vcs_info:git:*' formats '%F{240}%b%u%c%f'
-zstyle ':vcs_info:git:*' actionformats '%F{240}(%b|%a%u%c)%f'
+# Set custom strings for an unstaged vcs repo changes and staged
+# changes
+zstyle ':vcs_info:*' unstagedstr ' unstaged'
+zstyle ':vcs_info:*' stagedstr ' staged'
+zstyle ':vcs_info:git:*' formats '(%b)%F{red}%u%f%F{cyan}%c%f'
+zstyle ':vcs_info:git:*' actionformats '(%b)|%a%F{red}%u%f%F{cyan}%c%f'
 zstyle ':vcs_info:*' enable git
 
 # The following lines were added by compinstall

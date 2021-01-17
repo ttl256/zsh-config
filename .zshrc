@@ -20,16 +20,33 @@ setopt hist_verify
 setopt correct
 setopt correct_all
 
-setopt no_case_glob
-
-zstyle :compinstall filename "$ZDOTDIR/.zshrc"
-_comp_options+=(globdots)
-
-autoload -Uz compinit
-compinit
-
-PROMPT="%F{green}%n%f%F{yellow}@%m%f in %F{cyan}%1d %f"$'\n'"%# "
+PROMPT="%F{green}%n%f%F{yellow}@%m%f in %F{cyan}%2d %f"$'\n'"%# "
 
 setopt autocd
 unsetopt beep
 bindkey -v
+
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+# Enable checking for (un)staged changes, enabling use of %u and %c
+zstyle ':vcs_info:*' check-for-changes true
+# Set custom strings for an unstaged vcs repo changes (*) and staged
+# changes (+)
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:git:*' formats '%F{240}%b%u%c%f'
+zstyle ':vcs_info:git:*' actionformats '%F{240}(%b|%a%u%c)%f'
+zstyle ':vcs_info:*' enable git
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'l:|=* r:|=*'
+zstyle :compinstall filename "$ZDOTDIR/.zshrc"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall

@@ -1,0 +1,19 @@
+alias sudo="sudo "
+alias ls="ls -Ghp"
+alias la="ls -ltr"
+alias ll="ls -lAtr"
+
+alias grep="grep -E -i --color=auto"
+
+alias df="df -ha"
+alias du="du -ach | sort -h"
+
+function dfind { find / -type d -iname $1 2>/dev/null }
+function fhere { la | grep $1 }
+
+alias cp="cp -v"
+alias mv="mv -v"
+
+alias tmuxl="tmux ls"
+alias tmuxa="tmux attach -t"
+alias tmuxk="tmux kill-session -t"

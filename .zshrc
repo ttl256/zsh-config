@@ -23,7 +23,6 @@ setopt hist_verify
 setopt correct
 setopt correct_all
 
-PROMPT="%F{green}%n%f%F{yellow}@%m%f in %F{cyan}%2d %f"$'\n'"%# "
 
 setopt autocd
 unsetopt beep
@@ -39,8 +38,9 @@ autoload -Uz add-zsh-hook vcs_info
 setopt prompt_subst
 # Run vcs_info just before a prompt is displayed (precmd)
 add-zsh-hook precmd vcs_info
+PROMPT="%F{green}%n%f%F{yellow}@%m%f in %F{cyan}%2d%f \$vcs_info_msg_0_"$'\n'"%# "
 # Add a prompt on the right with vcs info
-RPROMPT=\$vcs_info_msg_0_
+#RPROMPT=\$vcs_info_msg_0_
 # Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
 # Set custom strings for an unstaged vcs repo changes and staged

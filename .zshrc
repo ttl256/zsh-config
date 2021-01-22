@@ -61,6 +61,10 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=green'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=green'
+
 # Turn on syntax highlighting. TODO: make this invocation more
 # reliable.
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
